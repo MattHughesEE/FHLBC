@@ -4,57 +4,53 @@
   connection: local
   vars:
     Instance_name: fhcdbsumt02
+    key_name: fhlbckey
+    aws_region: us-east-2
+    aws_instance_type: t2.micro
+    aws_ami: ami-04be6a27b0206807f
+    subnet: subnet-ed86bf85
+    Business_Serv: BusService
+    App_Name: TestApp
+    Environment: DEV
+    Owne_Name: JSMITH
+    Patch_Group: Patch1
   tasks:
   - name: Launch ec2 Instance
     ec2:
-      key_name: fhlbckey
-      region: us-east-2
+      key_name: "{{ key_name }}"
+      region: "{{ aws_region }}"
       #group: databases
-      instance_type: t2.micro
-      #image: ami-04be6a27b0206807f
-      image: ami-0cd3dfa4e37921605
+      instance_type: "{{ aws_instance_type }}" 
+      image: "{{ aws_ami }}"
+      #image: ami-0cd3dfa4e37921605 (AMZN Linux)
       wait: yes
       #wait_timeout: 500
       count: 1
-      vpc_subnet_id: subnet-ed86bf85
+      vpc_subnet_id: "{{ subnet }}"
       assign_public_ip: yes
       instance_tags:
-         BusinessService: BusService
-         Application: TestApp
-         Env: DEV
+         BusinessService: "{{ Business_Serv }}"
+         Application: "{{ App_Name }}"
+         Env: "{{ Environment }}"
          Name: "{{ Instance_name }}"
-         Owner: JSMITH
-         Patch Group: Patch1
-      #volumes:
-       # - device_name: /dev/sda1
-          #volume_type: gp2
-          #volume_size: 100
-          #delete_on_termination: true
-          #ec2_tags:
-            #tags:
-              #Name: testingVolTags
-              #Testing: Here
-      #monitoring: yes
-      #vpc_subnet_id: subnet-ed86bf85
+         Owner: "{{ Owner_Name }}"
+         Patch Group: "{{ Patch_Group }}"
       
     register: result
    
   - debug:
       var=result
-  - debug:
-      var=result.instances
-  
-  
+      
   - name: Add tags to Volume
     ec2_tag:
-      region: us-east-2
-      resource: result.instances[2]./dev/xvda[2]
-      state: absent
+      region: "{{ aws_region }}"
+      resource: result.instances[0].block_device_mapping["/dev/xvda"].volume_id
+      state: present
       tags:
-        Name: TestApp
+        Name: "{{ App_Name }}"
         Drive: root
-        Env: DEV
-        Name: fhcdbsumt02  
+        Env: "{{ Environment }}"
+        Name: "{{ Instance_name }}"
   
   - name: create alarm
     ec2_metric_alarm:
@@ -72,18 +68,3 @@
       description: "Status check alarm"
       dimensions: {'InstanceId' : '{{ result.instance_ids }}'}
       alarm_actions: ['arn:aws:sns:us-east-2:935659307200:NotificationTopicEC2']
-      
-      
-      
-
- # - name: Add tags to Volume
-   # ec2_tag:
-     # region: us-east-2
-    #  resource: result.instances.volume_id
-     # state: absent
-      #tags:
-       # Name: TestApp
-        #Drive: root
-        #Env: DEV
-       # Name: fhcdbsumt02
-        
