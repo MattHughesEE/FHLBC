@@ -12,7 +12,7 @@
     Business_Serv: BusService
     App_Name: TestApp
     Environment: DEV
-    Owne_Name: JSMITH
+    Owner_Name: JSMITH
     Patch_Group: Patch1
   tasks:
   - name: Launch ec2 Instance
