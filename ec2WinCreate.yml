@@ -62,8 +62,8 @@
   - name: Add tags to Volume
     ec2_tag:
       region: "{{ aws_region }}"
-      resource: "{{ result.instances[0].block_device_mapping[//dev/xvda/].volume_id }}"
-      resource: var
+      #resource: "{{ result.instances[0].block_device_mapping[//dev/xvda/].volume_id }}"
+      resource: "{{ volume_id_stored }}"
       state: present
       tags:
         Name: "{{ App_Name }}"
