@@ -69,7 +69,7 @@
     ec2_tag:
       region: "{{ aws_region }}"
       #resource: "{{ result.instances[0].block_device_mapping[//dev/xvda/].volume_id }}"
-      resource: "{{ volume_id_stored }}"
+      resource: "{{ volume_id_stored_out }}"
       #resource: result.instances[0].block_device_mapping[\"/dev/xvda"\].volume_id
       state: present
       tags:
