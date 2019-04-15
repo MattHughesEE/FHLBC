@@ -36,7 +36,11 @@
          Name: "{{ Instance_name }}"
          Owner: "{{ Owner_Name }}"
          Patch Group: "{{ Patch_Group }}"
-      
+      volumes:
+        - device_name: /dev/xvda
+          volume_type: gp2
+          volume_size: 10
+          delete_on_terminiation: true
     register: result
    
   - debug:
