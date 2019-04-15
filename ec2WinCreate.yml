@@ -52,6 +52,12 @@
   - set_fact: 
       volume_id_stored: result.instances[0].block_device_mapping["/dev/xvda"].volume_id
       
+   - set_fact: 
+      volume_id_stored_out={{ volume_id_stored }}
+      
+  - set_fact: 
+      volume_id_stored_new=result.instances[0].block_device_mapping["/dev/xvda"].volume_id.stdout
+      
   - debug:
       var="{{ volume_id_stored }}"
     
@@ -63,8 +69,8 @@
     ec2_tag:
       region: "{{ aws_region }}"
       #resource: "{{ result.instances[0].block_device_mapping[//dev/xvda/].volume_id }}"
-      #resource: "{{ volume_id_stored }}"
-      resource: result.instances[0].block_device_mapping[\"/dev/xvda"\].volume_id
+      resource: "{{ volume_id_stored }}"
+      #resource: result.instances[0].block_device_mapping[\"/dev/xvda"\].volume_id
       state: present
       tags:
         Name: "{{ App_Name }}"
