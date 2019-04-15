@@ -52,8 +52,8 @@
   - set_fact: 
       volume_id_stored: result.instances[0].block_device_mapping["/dev/xvda"].volume_id
     
-  - set_fact: 
-      "{{ volume_id_stored }}"=result.instances[0].block_device_mapping["/dev/xvda"].volume_id
+ # - set_fact: 
+      #"{{ volume_id_stored }}"=result.instances[0].block_device_mapping["/dev/xvda"].volume_id
     
       
   - name: Add tags to Volume
