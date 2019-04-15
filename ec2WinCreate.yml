@@ -48,8 +48,8 @@
       
   - debug:
       var=result.instances[0].block_device_mapping["/dev/xvda"].volume_id
+  
   - set_fact: result.instances[0].block_device_mapping["/dev/xvda"].volume_id: volume_id_stored
-    
     
   - set_fact: result.instances[0].block_device_mapping["/dev/xvda"].volume_id="{{ volume_id_stored }}"
     
