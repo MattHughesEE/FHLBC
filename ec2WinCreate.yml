@@ -52,8 +52,10 @@
   - set_fact: 
       volume_id_stored: result.instances[0].block_device_mapping["/dev/xvda"].volume_id
       
-  - set_fact: 
-      volume_id_stored_out={{ volume_id_stored.stdout }}
+  #- set_fact: 
+      #volume_id_stored_out={{ volume_id_stored.stdout }}
+  - set_fact:
+      myvalue: "{{ result.stdout | regex_search(regexp,'\\1') }}"
       
   - set_fact: 
       volume_id_stored_new=result.instances[0].block_device_mapping["/dev/xvda"].volume_id.stdout
