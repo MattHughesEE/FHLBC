@@ -91,6 +91,6 @@
       evaluation_periods: 8
       description: "Status Check Alarm - System"
       dimensions: {'InstanceId' : '{{ result.instance_ids }}'}
-      alarm_actions: ['arn:aws:automate:{{ aws_region }}:ec2:recover']
-      
+      #alarm_actions: ['arn:aws:automate:{{ aws_region }}:ec2:recover']
+      alarm_actions: ['arn:aws:iam::aws:policy/aws-service-role/CloudWatchEventsServiceRolePolicy']
       
