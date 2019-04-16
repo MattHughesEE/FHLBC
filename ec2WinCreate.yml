@@ -103,6 +103,7 @@
     ec2_metric_alarm:
       state: present
       region: "{{ aws_region }}"
+      name: "{{ Instance_name }}_NoAutorecover-statuscheck_instance-{{ result.instance_ids }}"
       metric: "StatusCheckFailed_System"
       namespace: "AWS/EC2"
       statistic: Average
