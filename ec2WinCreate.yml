@@ -15,6 +15,7 @@
     Environment: DEV
     Owner_Name: JSMITH
     Patch_Group: Patch1
+    aws_account_id: 935659307200
   tasks:
   - name: Launch ec2 Instance
     ec2:
@@ -81,7 +82,7 @@
         Env: "{{ Environment }}"
         Name: "{{ Instance_name }}"
   
-  - name: create alarm
+  - name: create alarm for Status Check Failed Any
     ec2_metric_alarm:
       state: present
       region: us-east-2
@@ -97,3 +98,20 @@
       description: "Status check alarm"
       dimensions: {'InstanceId' : '{{ result.instance_ids }}'}
       alarm_actions: ['arn:aws:sns:us-east-2:935659307200:NotificationTopicEC2']
+      
+  - name: Create alarm for Status Check Failed System
+    ec2_metric_alarm:
+      state: present
+      region: "{{ aws_region }}"
+      metric: "StatusCheckFailed_System"
+      namespace: "AWS/EC2"
+      statistic: Average
+      comparison: ">="
+      threshold: 1
+      period: 60
+      evaluation_periods: 8
+      description: "Status Check Alarm - System"
+      diemnsions: {'InstanceId' : '{{ result.instance_ids }}'}
+      alarm_actions: ['arn:aws:sns:us-east-2:935659307200:NotificationTopicEC2', 'arn:aws:automate:{{ aws_region }}:ec2_reecover']
+      
+      
