@@ -49,24 +49,6 @@
       
   - debug:
       var=result.instances[0].block_device_mapping["/dev/xvda"].volume_id
-  
- # - set_fact: 
-     # volume_id_stored: result.instances[0].block_device_mapping["/dev/xvda"].volume_id
-      
-  #- set_fact: 
-      #volume_id_stored_out={{ volume_id_stored.stdout }}
-  #- set_fact:
-     # myvalue: "{{ result.stdout | regex_search(regexp,'/(?:vol)/') }}"
-      
-  #- set_fact: 
-    #  volume_id_stored_new=result.instances[0].block_device_mapping["/dev/xvda"].volume_id.stdout
-      
-  #- debug:
-    #  var="{{ volume_id_stored }}"
-    
- # - set_fact: 
-      #"{{ volume_id_stored }}"=result.instances[0].block_device_mapping["/dev/xvda"].volume_id
-    
       
   - name: Add tags to Volume
     ec2_tag:
@@ -113,6 +95,6 @@
       evaluation_periods: 8
       description: "Status Check Alarm - System"
       dimensions: {'InstanceId' : '{{ result.instance_ids }}'}
-      alarm_actions: ['arn:aws:sns:us-east-2:935659307200:NotificationTopicEC2', 'arn:aws:automate:{{ aws_region }}:ec2:recover']
+      alarm_actions: ['arn:aws:automate:{{ aws_region }}:ec2:recover']
       
       
