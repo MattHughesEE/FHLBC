@@ -89,7 +89,7 @@
       metric: "StatusCheckFailed"
       namespace: "AWS/EC2"
       statistic: Average
-      comparison: "<="
+      comparison: ">="
       threshold: 1.0
       period: 60
       evaluation_periods: 8
