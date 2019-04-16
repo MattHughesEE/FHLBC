@@ -24,7 +24,6 @@
       #group: databases
       instance_type: "{{ aws_instance_type }}" 
       image: "{{ aws_ami }}"
-      #image: ami-0cd3dfa4e37921605 (AMZN Linux)
       wait: yes
       #wait_timeout: 500
       count: 1
@@ -46,7 +45,7 @@
    
   - debug:
       var=result
-      
+   
   - debug:
       var=result.instances[0].block_device_mapping["/dev/xvda"].volume_id
       
@@ -54,9 +53,6 @@
     ec2_tag:
       region: "{{ aws_region }}"
       resource: "{{ result.instances[0].block_device_mapping['/dev/xvda'].volume_id }}"
-      #resource: "{{ volume_id_stored_out }}"
-      #resource: result.instances[0].block_device_mapping[\"/dev/xvda"\].volume_id
-      #resource: "{{ myvalue }}"
       state: present
       tags:
         Name: "{{ App_Name }}"
