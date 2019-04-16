@@ -92,5 +92,5 @@
       description: "Status Check Alarm - System"
       dimensions: {'InstanceId' : '{{ result.instance_ids }}'}
       #alarm_actions: ['arn:aws:automate:{{ aws_region }}:ec2:recover']
-      alarm_actions: ['arn:aws:iam::935659307200:role:AWSServiceRoleForCloudWatchEvents']
+      alarm_actions: ['arn:aws:iam::935659307200:role/aws-service-role/events.amazonaws.com/AWSServiceRoleForCloudWatchEvents']
       
