@@ -50,19 +50,19 @@
   - debug:
       var=result.instances[0].block_device_mapping["/dev/xvda"].volume_id
   
-  - set_fact: 
-      volume_id_stored: result.instances[0].block_device_mapping["/dev/xvda"].volume_id
+ # - set_fact: 
+     # volume_id_stored: result.instances[0].block_device_mapping["/dev/xvda"].volume_id
       
   #- set_fact: 
       #volume_id_stored_out={{ volume_id_stored.stdout }}
-  - set_fact:
-      myvalue: "{{ result.stdout | regex_search(regexp,'/(?:vol)/') }}"
+  #- set_fact:
+     # myvalue: "{{ result.stdout | regex_search(regexp,'/(?:vol)/') }}"
       
-  - set_fact: 
-      volume_id_stored_new=result.instances[0].block_device_mapping["/dev/xvda"].volume_id.stdout
+  #- set_fact: 
+    #  volume_id_stored_new=result.instances[0].block_device_mapping["/dev/xvda"].volume_id.stdout
       
-  - debug:
-      var="{{ volume_id_stored }}"
+  #- debug:
+    #  var="{{ volume_id_stored }}"
     
  # - set_fact: 
       #"{{ volume_id_stored }}"=result.instances[0].block_device_mapping["/dev/xvda"].volume_id
@@ -71,10 +71,10 @@
   - name: Add tags to Volume
     ec2_tag:
       region: "{{ aws_region }}"
-      #resource: "{{ result.instances[0].block_device_mapping[//dev/xvda/].volume_id }}"
+      resource: "{{ result.instances[0].block_device_mapping[//dev/xvda/].volume_id }}"
       #resource: "{{ volume_id_stored_out }}"
       #resource: result.instances[0].block_device_mapping[\"/dev/xvda"\].volume_id
-      resource: "{{ myvalue }}"
+      #resource: "{{ myvalue }}"
       state: present
       tags:
         Name: "{{ App_Name }}"
