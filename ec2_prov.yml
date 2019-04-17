@@ -16,7 +16,7 @@
     Owner_Name: JSMITH
     Patch_Group: Patch1
     aws_account_id: 935659307200
-    instsance_count: 1
+    instance_count: 1
     volume_size: 10
   #vars_file: 
     #- /vars/ec2_win_create_vars.yml
