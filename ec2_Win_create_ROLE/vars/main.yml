@@ -1,0 +1,17 @@
+---
+# vars file for ec2_Win_create
+Instance_name: fhcdbsumt02
+key_name: fhlbckey
+aws_region: us-east-2
+aws_instance_type: t2.micro
+aws_ami: ami-0cd3dfa4e37921605
+subnet: subnet-ed86bf85
+Business_Serv: BusService
+App_Name: TestApp
+Environment: DEV
+Owner_Name: JSMITH
+Patch_Group: Patch1
+aws_account_id: 935659307200
+instance_count: 1
+#device_name: /dev/xvda
+volume_size: 10
