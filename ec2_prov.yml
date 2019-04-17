@@ -21,6 +21,8 @@
   #vars_file: 
     #- /vars/ec2_win_create_vars.yml
   tasks:
+    - include: ec2_vars.yml
+    
   - name: Launch ec2 Instance and attach a volume. Register the output.
     ec2:
       key_name: "{{ key_name }}"
