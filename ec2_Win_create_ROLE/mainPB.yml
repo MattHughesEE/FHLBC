@@ -1,5 +1,5 @@
 ---
 - name: Example playbook
-  hosts: '{{ target }}'
+  hosts: localhost
   roles:
     - { role: ec2_Win_create_ROLE }
