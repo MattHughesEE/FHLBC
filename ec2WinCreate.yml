@@ -7,7 +7,8 @@
     key_name: fhlbckey
     aws_region: us-east-2
     aws_instance_type: t2.micro
-    aws_ami: ami-0cd3dfa4e37921605
+    aws_ami: ami-0b500ef59d8335eee
+    #aws_ami: ami-0cd3dfa4e37921605
     #aws_ami: ami-04be6a27b0206807f
     subnet: subnet-ed86bf85
     Business_Serv: BusService
