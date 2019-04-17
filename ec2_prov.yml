@@ -67,7 +67,7 @@
   - name: Create an alarm for Status Check Failed Any and send email when triggered
     ec2_metric_alarm:
       state: present
-      region: "{{ us-east-2 }}"
+      region: "{{ aws_region }}"
       name: "{{ Instance_name }}_NoAutorecover-statuscheck_instance-{{ ec2result.instance_ids }}"
       metric: "StatusCheckFailed"
       namespace: "AWS/EC2"
