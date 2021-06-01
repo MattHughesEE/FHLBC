@@ -3,19 +3,19 @@
   hosts: localhost
   connection: local
   vars:
-    Instance_name: fhcdbsumt02
-    key_name: fhlbckey
-    aws_region: us-east-2
+    Instance_name: RosieTest
+    key_name: Mattest
+    aws_region: us-east-1
     aws_instance_type: t2.micro
     aws_ami: ami-0cd3dfa4e37921605
     #aws_ami: ami-04be6a27b0206807f
-    subnet: subnet-ed86bf85
+    subnet: subnet-2786ee41
     Business_Serv: BusService
-    App_Name: TestApp
+    App_Name: ROSIETestApp
     Environment: DEV
     Owner_Name: JSMITH
     Patch_Group: Patch1
-    aws_account_id: 935659307200
+    aws_account_id: 673626449192
     instance_count: 1
     volume_size: 10
   #vars_file: 
